@@ -23,3 +23,4 @@ rootProject.name = "Catatan Berita"
 include(":app")
 include(":features:splash-screen")
 include(":features:home")
+include(":libraries:utils")
