@@ -2,14 +2,18 @@ package com.isfa.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.isfa.home.data.SampleRepository
+import com.isfa.home.data.NewsRepository
+import com.isfa.home.domain.CategoryNewsUseCase
+import com.isfa.home.domain.TitleNewsUseCase
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel constructor(
-    private val sampleRepository: SampleRepository
+    private val titleNewsUseCase: TitleNewsUseCase,
+    private val categoryNewsUseCase: CategoryNewsUseCase
 ) : ViewModel() {
 
-    val sampleList: Flow<List<String>> = sampleRepository.getSampleList()
+    val newsList: Flow<List<String>> = titleNewsUseCase.result()
+    val categories: Flow<List<String>> = categoryNewsUseCase.result()
 
     companion object {
 
@@ -19,8 +23,11 @@ class MainViewModel constructor(
         class Factory : ViewModelProvider.Factory {
 
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val sampleRepository = SampleRepository()
-                return MainViewModel(sampleRepository) as T
+                val newsRepository = NewsRepository()
+                val titleNewsUseCase = TitleNewsUseCase(newsRepository)
+                val categoryNewsUseCase = CategoryNewsUseCase(newsRepository)
+
+                return MainViewModel(titleNewsUseCase, categoryNewsUseCase) as T
             }
         }
     }

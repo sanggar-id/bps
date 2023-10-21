@@ -21,9 +21,17 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         lifecycleScope.launch {
-            viewModel.sampleList.collect {
-                it.forEach { sample ->
-                    println(">> $sample")
+            viewModel.newsList.collect {
+                it.forEach { title ->
+                    println(">> ${title}")
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.categories.collect {
+                it.forEach { category ->
+                    println("categories >> ${category}")
                 }
             }
         }
