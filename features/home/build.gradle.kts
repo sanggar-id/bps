@@ -3,6 +3,7 @@ apply(from = "${rootProject.projectDir}/common.library.gradle")
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -14,6 +15,10 @@ dependencies {
 
     implementation(libs.constraintlayout)
     implementation(libs.material)
+
+    // dagger
+    implementation(libs.dagger.hilt)
+    kapt(libs.dagger.hilt.compiler)
 
     // lifecycle
     implementation(libs.androidx.lifecycle)
