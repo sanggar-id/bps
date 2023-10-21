@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="true">
 
             <intent-filter>

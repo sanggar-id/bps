@@ -81,3 +81,10 @@ Step to manage the similar dependencies
    variable-name = { module = "sample.test:test", version.ref = "variable-name-ver" }
 4. How to call it ?
    implementation(libs.variable.name)
+
+
+Architecture Components
+1. We have to differentiate between mutable and immutable
+   a. Mutable -> read-write (for data changes inside ViewModel)
+   b. Immutable -> read-only (for consuming outside ViewModel, e.g. Activity)
+2. 
