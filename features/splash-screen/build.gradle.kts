@@ -9,4 +9,7 @@ android {
     namespace = "com.isfa.splash"
 }
 
-dependencies {}
+dependencies {
+    implementation(libs.constraintlayout)
+    implementation(libs.material)
+}
