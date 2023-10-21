@@ -3,12 +3,13 @@ package com.isfa.home.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.isfa.home.data.SampleRepository
+import kotlinx.coroutines.flow.Flow
 
 class MainViewModel constructor(
     private val sampleRepository: SampleRepository
 ) : ViewModel() {
 
-    val sampleList: List<String> = sampleRepository.getSampleList()
+    val sampleList: Flow<List<String>> = sampleRepository.getSampleList()
 
     companion object {
 
