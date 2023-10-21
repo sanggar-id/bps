@@ -1,20 +1,17 @@
 package com.isfa.home.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.isfa.home.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            MainViewModel.Companion.Factory()
-        )[MainViewModel::class.java]
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

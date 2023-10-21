@@ -5,9 +5,12 @@ import com.isfa.home.domain.CategoryNewsUseCase
 import com.isfa.home.domain.TitleNewsUseCase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 object HomeModule {
 
     @Provides

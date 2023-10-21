@@ -13,6 +13,7 @@ kotlinx-coroutines-android = "1.7.2"
 kotlinx-coroutines-core = "1.7.2"
 dagger-hilt = "2.48.1"
 dagger-hilt-compiler = "2.48.1"
+dagger-hilt-navigation = "1.0.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -32,3 +33,4 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger-hilt" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger-hilt-compiler" }
+dagger-hilt-navigation = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "dagger-hilt-navigation" }
