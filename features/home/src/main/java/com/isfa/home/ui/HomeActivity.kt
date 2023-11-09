@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            HomeScreen()
+            HomeScreen(viewModel)
         }
     }
 }
