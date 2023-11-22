@@ -15,7 +15,7 @@ class NewsRepository {
         News("Rendang makanan terbaik Indonesia", "Info")
     )
 
-    fun newsList() = news
+    fun newsList() = news.asReversed()
 
     fun addNews(title: String, category: String) {
         news.add(News(title, category))

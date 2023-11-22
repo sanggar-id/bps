@@ -29,7 +29,7 @@ fun HomeScreen(
     val news = viewModel.news.toMutableStateList()
 
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(24.dp),
         modifier = modifier.fillMaxHeight()
     ) {
