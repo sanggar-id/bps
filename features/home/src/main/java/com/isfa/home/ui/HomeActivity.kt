@@ -48,6 +48,9 @@ class HomeActivity : AppCompatActivity() {
 
                     if (hasBottomSheetShown) {
                         NewsBottomSheet(
+                            onAddNewsClick = { title, category ->
+                                viewModel.addNews(title, category)
+                            },
                             onSheetDismiss = {
                                 hasBottomSheetShown = false
                             }

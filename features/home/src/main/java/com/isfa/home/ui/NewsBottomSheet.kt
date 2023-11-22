@@ -15,7 +15,10 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewsBottomSheet(onSheetDismiss: () -> Unit) {
+fun NewsBottomSheet(
+    onAddNewsClick: (String, String) -> Unit,
+    onSheetDismiss: () -> Unit
+) {
     val sheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
@@ -28,10 +31,10 @@ fun NewsBottomSheet(onSheetDismiss: () -> Unit) {
             item {
                 Button(
                     onClick = {
-
+                        onAddNewsClick("Ini contoh news title", "ini category nya")
                     }
                 ) {
-                    Text(text = "Click here to hide")
+                    Text(text = "Add News")
                 }
             }
 
