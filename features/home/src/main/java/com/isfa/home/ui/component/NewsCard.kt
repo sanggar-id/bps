@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,42 +24,46 @@ import com.isfa.home.R
 
 @Composable
 fun NewsCard(title: String, category: String, action: () -> Unit = {}) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(6.dp))
-            .background(Color.LightGray)
-            .clickable {
-                action()
-            }
+    Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 4.dp
+        )
     ) {
-        Column(
+        Row(
             modifier = Modifier
-                .weight(2f)
-                .padding(6.dp)
+                .fillMaxWidth()
+                .clickable {
+                    action()
+                }
         ) {
-            Text(
-                text = title,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.ExtraBold
-            )
-
-            Text(
-                text = category.uppercase(),
-                color = Color.Red,
-                fontSize = 10.sp,
+            Column(
                 modifier = Modifier
-                    .padding(top = 4.dp)
+                    .weight(2f)
+                    .padding(6.dp)
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+
+                Text(
+                    text = category.uppercase(),
+                    color = Color.Red,
+                    fontSize = 10.sp,
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                )
+            }
+
+            Image(
+                painter = painterResource(R.drawable.img_nasi_jaha),
+                contentDescription = "thumbnail berita",
+                modifier = Modifier
+                    .padding(start = 4.dp)
+                    .weight(1.5f)
             )
         }
-
-        Image(
-            painter = painterResource(R.drawable.img_nasi_jaha),
-            contentDescription = "thumbnail berita",
-            modifier = Modifier
-                .padding(start = 4.dp)
-                .weight(1.5f)
-        )
     }
 }
 

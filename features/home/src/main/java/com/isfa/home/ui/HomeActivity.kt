@@ -4,6 +4,14 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +23,20 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            HomeScreen(viewModel)
+            MaterialTheme {
+                Scaffold(
+                    floatingActionButton = {
+                        ExtendedFloatingActionButton(onClick = {}) {
+                            Icon(imageVector = Icons.Filled.Add, contentDescription = "add")
+                        }
+                    }
+                ) { paddingValues ->
+                    HomeScreen(
+                        viewModel = viewModel,
+                        modifier = Modifier.padding(paddingValues)
+                    )
+                }
+            }
         }
     }
 }

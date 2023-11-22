@@ -3,7 +3,9 @@ package com.isfa.home.ui
 import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,13 +20,16 @@ import com.isfa.home.ui.component.HeaderView
 import com.isfa.home.ui.component.NewsCard
 
 @Composable
-fun HomeScreen(viewModel: MainViewModel = viewModel()) {
+fun HomeScreen(
+    viewModel: MainViewModelContract = MainViewModelContract.mock(),
+    modifier: Modifier = Modifier
+) {
     val news by viewModel.news.collectAsState(initial = emptyList())
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier
-            .padding(24.dp)
+        contentPadding = PaddingValues(24.dp),
+        modifier = modifier.fillMaxHeight()
     ) {
         item {
             HeaderView(
