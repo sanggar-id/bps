@@ -2,6 +2,7 @@ package com.isfa.home.ui
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -45,7 +46,8 @@ fun NewsBottomSheet(
                     },
                     onValueChange = {
                         title = it
-                    }
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -53,6 +55,7 @@ fun NewsBottomSheet(
                 Button(
                     onClick = {
                         onAddNewsClick(title, "ini category nya")
+                        onSheetDismiss()
 
                         coroutineScope.launch {
                             sheetState.hide()
