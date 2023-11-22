@@ -3,6 +3,7 @@ package com.isfa.home.ui
 import androidx.lifecycle.ViewModel
 import com.isfa.home.data.entity.News
 import com.isfa.home.domain.CategoryNewsUseCase
+import com.isfa.home.domain.SetNewsUseCase
 import com.isfa.home.domain.TitleNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -13,13 +14,13 @@ import javax.inject.Inject
 interface MainViewModelContract {
 
     val news: Flow<List<News>>
+    fun addNews(title: String, category: String)
 
     companion object {
-
         // Only need to enable the @Preview annotation by showing a mocking news data
         fun mock() = object : MainViewModelContract {
-            override val news: Flow<List<News>>
-                get() = flow {}
+            override val news: Flow<List<News>> get() = flow {}
+            override fun addNews(title: String, category: String) = Unit
         }
     }
 }
@@ -27,7 +28,8 @@ interface MainViewModelContract {
 @HiltViewModel
 class MainViewModel @Inject constructor(
     titleNewsUseCase: TitleNewsUseCase,
-    categoryNewsUseCase: CategoryNewsUseCase
+    categoryNewsUseCase: CategoryNewsUseCase,
+    private val setNewsUseCase: SetNewsUseCase
 ) : ViewModel(), MainViewModelContract {
 
     override val news: Flow<List<News>> = combine(
@@ -37,5 +39,12 @@ class MainViewModel @Inject constructor(
         titles.zip(categories) { title, category ->
             News(title, category)
         }
+    }
+
+    override fun addNews(title: String, category: String) {
+        setNewsUseCase.execute(
+            title = title,
+            category = category
+        )
     }
 }

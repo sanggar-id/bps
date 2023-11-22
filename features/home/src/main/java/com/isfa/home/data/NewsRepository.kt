@@ -6,15 +6,20 @@ import kotlinx.coroutines.flow.flow
 
 class NewsRepository {
 
+    // assume the [news] is a database
+    private val news = mutableListOf(
+        News("Tarian Budaya Makassar", "Sosial Budaya"),
+        News("Pertandingan MotoGP Mandalika", "Olahraga"),
+        News("Rendang makanan terbaik Indonesia", "Info")
+    )
+
     fun newsList(): Flow<List<News>> {
         return flow {
-            val result = listOf(
-                News("Tarian Budaya Makassar", "Sosial Budaya"),
-                News("Pertandingan MotoGP Mandalika", "Olahraga"),
-                News("Rendang makanan terbaik Indonesia", "Info"),
-            )
-
-            emit(result)
+            emit(news)
         }
+    }
+
+    fun addNews(title: String, category: String) {
+        news.add(News(title, category))
     }
 }
