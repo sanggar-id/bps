@@ -11,6 +11,10 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,10 +27,16 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            var hasBottomSheetShown by remember { mutableStateOf(false) }
+
             MaterialTheme {
                 Scaffold(
                     floatingActionButton = {
-                        ExtendedFloatingActionButton(onClick = {}) {
+                        ExtendedFloatingActionButton(
+                            onClick = {
+                                hasBottomSheetShown = true
+                            }
+                        ) {
                             Icon(imageVector = Icons.Filled.Add, contentDescription = "add")
                         }
                     }
@@ -35,6 +45,14 @@ class HomeActivity : AppCompatActivity() {
                         viewModel = viewModel,
                         modifier = Modifier.padding(paddingValues)
                     )
+
+                    if (hasBottomSheetShown) {
+                        NewsBottomSheet(
+                            onSheetDismiss = {
+                                hasBottomSheetShown = false
+                            }
+                        )
+                    }
                 }
             }
         }
