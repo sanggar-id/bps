@@ -21,7 +21,7 @@ import com.isfa.home.ui.component.NewsCard
 
 @Composable
 fun HomeScreen(
-    viewModel: MainViewModelContract = MainViewModelContract.mock(),
+    viewModel: MainViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     val news by viewModel.news.collectAsState(initial = emptyList())

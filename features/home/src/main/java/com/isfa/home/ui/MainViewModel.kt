@@ -11,28 +11,14 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-interface MainViewModelContract {
-
-    val news: Flow<List<News>>
-    fun addNews(title: String, category: String)
-
-    companion object {
-        // Only need to enable the @Preview annotation by showing a mocking news data
-        fun mock() = object : MainViewModelContract {
-            override val news: Flow<List<News>> get() = flow {}
-            override fun addNews(title: String, category: String) = Unit
-        }
-    }
-}
-
 @HiltViewModel
 class MainViewModel @Inject constructor(
     titleNewsUseCase: TitleNewsUseCase,
     categoryNewsUseCase: CategoryNewsUseCase,
     private val setNewsUseCase: SetNewsUseCase
-) : ViewModel(), MainViewModelContract {
+) : ViewModel() {
 
-    override val news: Flow<List<News>> = combine(
+    val news: Flow<List<News>> = combine(
         titleNewsUseCase.result(),
         categoryNewsUseCase.result()
     ) { (titles, categories) ->
@@ -41,7 +27,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    override fun addNews(title: String, category: String) {
+    fun addNews(title: String, category: String) {
         setNewsUseCase.execute(
             title = title,
             category = category
