@@ -34,13 +34,14 @@ class ExerciseCalculator {
         val b = 2
         val expectedValue = 4
 
-        // Interception:
-        // Jika ((calculatorMock.sum(a, b))) dipanggil, maka
-        // Menghasilkan ((expectedValue))
         every { calculatorMock.sum(a, b) } returns expectedValue
 
         // When
-        val calculator = CalculatorMockImpl(calculatorMock)
+        val calculator = CalculatorMockImpl(object : CalculatorMock {
+            override fun sum(a: Int, b: Int): Int {
+                return a + b
+            }
+        })
 
         val result = calculator.sum(a, b)
 
