@@ -18,16 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.isfa.home.data.entity.News
 import com.isfa.home.ui.component.HeaderView
 import com.isfa.home.ui.component.NewsCard
 
 @Composable
 fun HomeScreen(
-    viewModel: MainViewModel = viewModel(),
+    newsList: List<News>,
     modifier: Modifier = Modifier
 ) {
-    val news = viewModel.news.toMutableStateList()
-
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(24.dp),
@@ -44,7 +43,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.padding(top = 16.dp))
         }
 
-        items(news) {
+        items(newsList) {
             NewsCard(
                 title = it.title,
                 category = it.category
@@ -63,5 +62,5 @@ fun HomeScreen(
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(emptyList())
 }

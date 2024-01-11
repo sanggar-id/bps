@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,8 +42,10 @@ class HomeActivity : AppCompatActivity() {
                         }
                     }
                 ) { paddingValues ->
+                    val news = viewModel.news.toMutableStateList()
+
                     HomeScreen(
-                        viewModel = viewModel,
+                        newsList = news,
                         modifier = Modifier.padding(paddingValues)
                     )
 
